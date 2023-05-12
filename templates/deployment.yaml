@@ -13,12 +13,19 @@ spec:
       labels:
         app: {{ tpl .Values.deployment.selector . }}
     spec:
+      volumes:
+      - name: nginx-conf
+        configMap:
+          name: spacetraders-configmap
       containers:
       - name: nginx
         image: {{ .Values.deployment.image }}
         imagePullPolicy: Never
         ports:
         - containerPort: 80
+        volumeMounts:
+        - name: nginx-conf
+          mountPath: /etc/nginx/conf.d/
         startupProbe:
           httpGet:
             path: /
