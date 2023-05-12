@@ -10,6 +10,8 @@ spec:
       app: {{ tpl .Values.deployment.selector . }}
   template:
     metadata:
+      annotations:
+        checksum/values: {{ .Values | toJson | sha256sum }}
       labels:
         app: {{ tpl .Values.deployment.selector . }}
     spec:
