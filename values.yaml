@@ -1,0 +1,16 @@
+namespace: spacetraders
+
+appLabel: spacetraders-ui
+
+service:
+  name: spacetraders-service
+  namespace: '{{ .Values.namespace }}'
+  selector: '{{ .Values.appLabel }}'
+
+deployment:
+  name: spacetraders-deployment
+  namespace: '{{ .Values.namespace }}'
+  replicas: 1
+  selector: '{{ .Values.appLabel }}'
+  image: spacetraders-ui:latest
+
