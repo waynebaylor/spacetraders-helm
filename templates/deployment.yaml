@@ -12,7 +12,7 @@ spec:
     metadata:
       annotations:
         checksum/values: {{ .Values | toJson | sha256sum }}
-        force-update: {{ randAlphaNum | quote }}
+        force-update: {{ now | quote }}
       labels:
         app: {{ tpl .Values.deployment.selector . }}
     spec:
